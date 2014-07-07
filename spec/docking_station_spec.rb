@@ -3,8 +3,10 @@ require 'bike'
 
 describe DockingStation do
 	
-	let (:old_street) { DockingStation.new }
+	let (:old_street) { DockingStation.new(capacity: 20) }
 	let (:bike) { Bike.new }
+	let (:broken_bike) { Bike.new.break! }
+	let (:working_bike) { Bike.new }
 
 	it 'should start with no bikes' do
 		expect(old_street.bikes).to eq []
@@ -35,6 +37,12 @@ describe DockingStation do
 	it 'should not accept any more bikes beyond capacity' do
 		20.times { old_street.dock(Bike.new) }
 		expect( lambda {old_street.dock(bike)}).to raise_error(RuntimeError)
+	end
+
+	it 'should provide a list of available bikes' do
+		old_street.dock(working_bike)
+		old_street.dock(broken_bike)
+		expect(old_street.available_bikes).to eq([working_bike])
 	end
 
 end
