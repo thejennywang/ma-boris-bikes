@@ -1,0 +1,23 @@
+require './lib/bike_container'
+require 'bike'
+
+class ContainerHolder; include BikeContainer; end
+
+describe BikeContainer do
+	
+	let(:bike) { Bike.new }
+	let(:holder) { ContainerHolder.new }
+
+	it 'should accept a bike' do
+		expect(holder.bike_count).to eq 0
+		holder.dock(bike)
+		expect(holder.bike_count).to eq 1
+	end
+
+	it 'release a bike' do
+		holder.dock(bike)
+		expect(holder.bike_count).to eq 1
+		holder.release(bike)
+		expect(holder.bike_count).to eq 0
+	end
+end
