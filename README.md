@@ -1,5 +1,6 @@
-Boris_Bikes
+Boris Bikes
 ===========
+This project serves as an introduction to Object-Oriented Programming (OOP) and the basics of Object-Oriented Design (OOD). We are creating a simple system for managing Boris (Barclays) Bikes in London. 
 
 Day 1 
 -----
